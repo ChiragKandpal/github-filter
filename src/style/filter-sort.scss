@@ -1,0 +1,109 @@
+.filter-sort {
+  &__container {
+    padding: 12px;
+    max-width: 700px;
+    margin: auto;
+  }
+
+  &__filter-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    .filter-each-wrapper {
+      border-color: #636363;
+      border-radius: 4px;
+      margin: 10px 0;
+      position: relative;
+
+      &:first-child {
+        width: 100%;
+      }
+
+      .active-filter {
+        background: #dbdbdb;
+        border-radius: 4px;
+        padding: 8px;
+        cursor: pointer;
+      }
+
+      .filter-list-container {
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        padding: 4px 8px 8px;
+        border-radius: 0 0 4px 4px;
+        border-bottom: 1px solid #636363;
+        border-left: 1px solid #636363;
+        border-right: 1px solid #636363;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        max-height: 300px;
+        z-index: 99;
+        overflow-y: scroll;
+        cursor: pointer;
+
+        .filter-option {
+          padding: 2px 0;
+        }
+      }
+    }
+
+    .count-filter {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0 4px;
+      width: 100%;
+
+      .active-filter {
+        margin: 6px auto auto;
+      }
+    }
+  }
+
+  &__sort-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    cursor: pointer;
+
+    .sort-body {
+      text-transform: capitalize;
+      margin: 0 0 0 6px;
+      position: relative;
+
+      .current-sort {
+        background: #dbdbdb;
+        border-radius: 4px;
+        padding: 8px;
+        width: 200px;
+      }
+
+      .sort-list {
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        padding: 4px 8px 8px;
+        border-radius: 0 0 4px 4px;
+        border-bottom: 1px solid #636363;
+        border-left: 1px solid #636363;
+        border-right: 1px solid #636363;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        z-index: 99;
+        overflow-y: scroll;
+
+        li {
+          padding: 2px 0;
+        }
+      }
+    }
+  }
+}
+
+.filter-error-msg {
+  margin: 20px auto 0;
+  padding: 0 12px;
+  max-width: 700px;
+}

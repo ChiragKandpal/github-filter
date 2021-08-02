@@ -1,0 +1,35 @@
+@mixin s768 {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin s1024 {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin s1080 {
+  @media screen and (min-width: 1080px) {
+    @content;
+  }
+}
+
+@mixin s1280 {
+  @media screen and (min-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin s1440 {
+  @media screen and (min-width: 1440px) {
+    @content;
+  }
+}
+
+@mixin internet-explorer {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
