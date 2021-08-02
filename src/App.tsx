@@ -49,6 +49,7 @@ const App: React.FC = () => {
 
   const clearSearch = () => {
     setUserName("");
+    setApiErrorResponse(false);
     setResponseData([]);
   };
   return (
