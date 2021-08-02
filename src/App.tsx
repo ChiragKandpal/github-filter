@@ -7,7 +7,7 @@ import "./App.scss";
 const App: React.FC = () => {
   const [userName, setUserName] = useState("");
   const [responseData, setResponseData] = useState<Array<any>>([]);
-  const [apiErrorResponse, setApiErrorResponse] = useState<string | null>();
+  const [apiErrorResponse, setApiErrorResponse] = useState<boolean>(false);
 
   const apiHandler = async (userName: string) => {
     if (userName) {
@@ -22,10 +22,16 @@ const App: React.FC = () => {
           }
         })
         .then((data) => {
-          setResponseData(data);
+          if (data.length > 0) {
+            setResponseData(data);
+            setApiErrorResponse(false);
+          } else {
+            setApiErrorResponse(true);
+            throw new Error("User not found");
+          }
         })
         .catch((error) => {
-          setApiErrorResponse('User not found');
+          setApiErrorResponse(true);
           console.error("Error:", error);
         });
     }
@@ -37,6 +43,8 @@ const App: React.FC = () => {
 
   const searchRepo = async () => {
     await apiHandler(userName);
+    console.log('responseData', responseData);
+    
   };
 
   const clearSearch = () => {
@@ -66,10 +74,10 @@ const App: React.FC = () => {
             )}
           </div>
         </div>
-        {responseData.length <= 0 && (
-          <div className="greet-text">{webpageConstants.greetingText}</div>
+        {userName.length <= 0 && (
+          <div className="start-page-text"><p>{webpageConstants.greetingText}</p><p>{webpageConstants.owner}</p></div>
         )}
-        {apiErrorResponse && <div className="greet-text">{apiErrorResponse}</div>}
+        {apiErrorResponse && <div className="start-page-text">{webpageConstants.errorText}</div>}
       </div>
       {userName && responseData.length > 0 && (
         <FilterSort repoResponseProp={responseData} />
