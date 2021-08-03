@@ -19,10 +19,6 @@
 
       &:first-child {
         width: 100%;
-
-        .filter-list-container {
-          z-index: 999;
-        }
       }
 
       .active-filter {
@@ -48,6 +44,10 @@
         z-index: 99;
         overflow-y: auto;
         cursor: pointer;
+
+        &.overlap-clear {
+          z-index: 999;
+        }
 
         .filter-option {
           padding: 6px 0;
@@ -100,7 +100,7 @@
         z-index: 99;
         overflow-y: auto;
 
-        li {
+        li>div {
           padding: 6px 0;
         }
       }
@@ -112,6 +112,14 @@
   margin: 20px auto 0;
   padding: 0 12px;
   max-width: 700px;
+}
+
+@include s768 {
+  .filter-sort {
+    &__container {
+      max-width: 400px;
+    }
+  }
 }
 
 @include s1080 {
@@ -126,6 +134,8 @@
   .filter-sort {
     &__container {
       padding: 12px 40px;
+      max-width: none;
+      width: 500px;
     }
   }
 }

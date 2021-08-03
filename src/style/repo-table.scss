@@ -54,7 +54,7 @@
     &__container {
       height: 100vh;
       position: relative;
-      overflow-y: scroll;
+      overflow-y: auto;
     }
   }
 }
@@ -67,7 +67,7 @@
       right: 2%;
       top: 50px;
       padding: 12px 12px 100px;
-      overflow-y: scroll;
+      overflow-y: auto;
 
       .repo-card {
         .text-data-wrapper {

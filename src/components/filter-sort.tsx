@@ -136,29 +136,31 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
   const filterSelectHandler = (event: any) => {
     const filterType = event.dataset.filterType;
     if (filterType === "repo-name") {
-      setFilterParam({ ...filterParam, repoName: event.dataset.filterName });
-      setActiveRepo(event.dataset.filterName);
+      console.log("asd", event.dataset.filterName);
+      
+      setFilterParam({ ...filterParam, repoName: event.dataset.filterName ? event.dataset.filterName : null });
+      setActiveRepo(event.dataset.filterName ? event.dataset.filterName : null);
     }
     if (filterType === "stargaze") {
       setFilterParam({
         ...filterParam,
-        starCount: Number(event.dataset.filterName),
+        starCount: event.dataset.filterName ? Number(event.dataset.filterName) : null,
       });
-      setActiveStargazerCount(event.dataset.filterName);
+      setActiveStargazerCount(event.dataset.filterName ? event.dataset.filterName : null);
     }
     if (filterType === "open-issue") {
       setFilterParam({
         ...filterParam,
-        openCount: Number(event.dataset.filterName),
+        openCount: event.dataset.filterName ? Number(event.dataset.filterName) : null,
       });
-      setActiveOpenIssueCount(event.dataset.filterName);
+      setActiveOpenIssueCount(event.dataset.filterName ? event.dataset.filterName : null);
     }
     if (filterType === "watcher") {
       setFilterParam({
         ...filterParam,
-        watcher: Number(event.dataset.filterName),
+        watcher: event.dataset.filterName ? Number(event.dataset.filterName) : null,
       });
-      setActiveWatcherCount(event.dataset.filterName);
+      setActiveWatcherCount(event.dataset.filterName ? event.dataset.filterName : null);
     }
 
     filterDropdownHandle(event);
@@ -213,8 +215,14 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
             </div>
             <div
               data-filter-list="filter-list"
-              className="filter-list-container hide"
+              className="filter-list-container overlap-clear hide"
             >
+              <div
+                className="filter-option"
+                data-filter-name={null}
+                data-filter-type="repo-name"
+                onClick={(e) => filterSelectHandler(e.target)}
+              >All</div>
               {repoList &&
                 repoList.map((value) => (
                   <div key={value}>
@@ -246,6 +254,12 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
                 data-filter-list="filter-list"
                 className="filter-list-container hide"
               >
+                <div
+                  className="filter-option"
+                  data-filter-name={null}
+                  data-filter-type="stargaze"
+                  onClick={(e) => filterSelectHandler(e.target)}
+                >All</div>
                 {stargazerCountList &&
                   stargazerCountList.map((value) => (
                     <div key={value}>
@@ -276,6 +290,12 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
                 data-filter-list="filter-list"
                 className="filter-list-container hide"
               >
+                <div
+                  className="filter-option"
+                  data-filter-name={null}
+                  data-filter-type="open-issue"
+                  onClick={(e) => filterSelectHandler(e.target)}
+                >All</div>
                 {openIssueCountList &&
                   openIssueCountList.map((value) => (
                     <div key={value}>
@@ -306,6 +326,12 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
                 data-filter-list="filter-list"
                 className="filter-list-container hide"
               >
+                <div
+                  className="filter-option"
+                  data-filter-name={null}
+                  data-filter-type="watcher"
+                  onClick={(e) => filterSelectHandler(e.target)}
+                >All</div>
                 {watcherCountList &&
                   watcherCountList.map((value) => (
                     <div key={value}>
