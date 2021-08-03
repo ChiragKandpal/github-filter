@@ -19,9 +19,6 @@ const RepoTable: React.FC<Props> = ({ tableArrayProps }: Props) => {
             <h4>{data.name}</h4>
             <p><span>owner:</span> {data.owner.login}</p>
             <p>
-              <span>description:</span> {data.description ? `${data.description.slice(0, 100)}}...` : 'none'}
-            </p>
-            <p>
               <span>Openissues:</span> {data.open_issues_count}
             </p>
             <p>
@@ -29,6 +26,9 @@ const RepoTable: React.FC<Props> = ({ tableArrayProps }: Props) => {
             </p>
             <p>
               <span>Stargazers:</span> {data.stargazers_count}
+            </p>
+            <p>
+              <span>description:</span> {data.description ? `${data.description.slice(0, 100)}}...` : 'none'}
             </p>
           </div>
         </div>
