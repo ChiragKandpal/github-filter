@@ -43,9 +43,7 @@ const App: React.FC = () => {
   }, [userName]);
 
   const searchRepo = async () => {
-    await apiHandler(userName);
-    console.log('responseData', responseData);
-    
+    await apiHandler(userName);    
   };
 
   // clear repository search on clear button click
