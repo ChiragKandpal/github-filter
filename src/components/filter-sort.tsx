@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import RepoTable from "./Repo-table";
+import { webpageConstants } from "../app-constants";
 import "../style/filter-sort.scss";
+
 interface sortProps {
   repoResponseProp: Array<any>;
 }
@@ -32,6 +34,7 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
   const sortOptionRef = useRef<HTMLDivElement>(null);
   let repoResponseCurrent = repoResponseProp;
 
+  // set filter object to null on username search.
   useEffect(() => {
     setActiveRepo(null);
     setActiveStargazerCount(null);
@@ -43,8 +46,9 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
     setArrNew(repoResponseCurrent);
   }, [repoResponseProp, repoResponseCurrent]);
 
+  // push sorted and non repeatitive values i.e reponame and counts in respective arrays. 
   useEffect(() => {
-    const filterRepo = (repoName: string) => {
+    const filterRepoNameArray = (repoName: string) => {
       let result = repoResponseProp.map((a) => a[repoName]);
       return result;
     };
@@ -58,12 +62,13 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
       return sortResult;
     };
 
-    setRepoList(filterRepo("name"));
+    setRepoList(filterRepoNameArray("name"));
     setStargazerCountList(filterArray("stargazers_count"));
     setOpenIssueCountList(filterArray("open_issues_count"));
     setWatcherCountList(filterArray("watchers_count"));
   }, [repoResponseProp]);
 
+  // handle sort dropdow when clicked outside sort element.
   useEffect(() => {
     const handleSortDropdown = (e: any) => {
       if (toggleDropdown && ref.current && !ref.current.contains(e.target)) {
@@ -76,10 +81,12 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
     };
   }, [toggleDropdown]);
 
-  const repoFilter = (applyFilter: boolean) => {
+  // get filtered array i.e repoResponseCurrent based on option selections.
+  const repoFilterHandler = (applyFilter: boolean) => {
     if (applyFilter) {
       Object.entries(filterParam).forEach(([key, value]) => {
         if (value !== null) {
+          // eslint-disable-next-line
           repoResponseCurrent = repoResponseCurrent.filter((word) => {
             if (key === "repoName") {
               return value === word.name;
@@ -113,6 +120,7 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
     }
   };
 
+  // generic filter dropdown handler on filter click.
   const filterDropdownHandle = (currTarget: any) => {
     const filterWrapper = currTarget.closest(
       `[data-filter-wrapper="filter-wrapper"]`
@@ -123,6 +131,7 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
     filterListContainer.classList.toggle("hide");
   };
 
+  // on filter option select add selecteed option to filterParam object.
   const filterSelectHandler = (event: any) => {
     const filterType = event.dataset.filterType;
     if (filterType === "repo-name") {
@@ -154,6 +163,7 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
     filterDropdownHandle(event);
   };
 
+  // sort ascending and descending count logic.
   const sortResultHandler = (e: any) => {
     repoResponseCurrent = arrNew;
     const element = e.target;
@@ -180,6 +190,7 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
     setSelectedValue(element.textContent);
   };
 
+  // handle sort list dropdown on sort button click.
   const sortdropDownHandler = () => {
     setToggleDropdown(!toggleDropdown);
   };
@@ -311,10 +322,10 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
             </div>
           </div>
         </div>
-        <button className="btn-blue btn-all" onClick={() => repoFilter(true)}>
+        <button className="btn-blue btn-all" onClick={() => repoFilterHandler(true)}>
           apply filters
         </button>
-        <button className="btn-clear btn-all" onClick={() => repoFilter(false)}>
+        <button className="btn-clear btn-all" onClick={() => repoFilterHandler(false)}>
           clear filters & sort
         </button>
 
@@ -395,7 +406,7 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
       {arrNew.length > 0 ? (
         <RepoTable tableArrayProps={arrNew} />
       ) : (
-        <div className="filter-error-msg">Selected filter combination is not present</div>
+        <div className="filter-error-msg">{webpageConstants.repoNotPresent}</div>
       )}
     </>
   );

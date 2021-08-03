@@ -4,4 +4,5 @@ export const webpageConstants = {
     owner: `-By Chirag Kandpal`,
     userameSearchLabel: `github username`,
     errorText: `user not found`,
+    repoNotPresent: `Repositories for selected filter combination are not found`
 }

@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { webpageConstants } from "./app-constants";
 import FilterSort from "./components/filter-sort";
-import "./App.scss";
+import "./style/App.scss";
 
 const App: React.FC = () => {
   const [userName, setUserName] = useState("");
   const [responseData, setResponseData] = useState<Array<any>>([]);
   const [apiErrorResponse, setApiErrorResponse] = useState<boolean>(false);
 
+    // API response and error handler
   const apiHandler = async (userName: string) => {
     if (userName) {
       await fetch(`https://api.github.com/users/${userName}/repos`, {
@@ -47,6 +48,7 @@ const App: React.FC = () => {
     
   };
 
+  // clear repository search on clear button click
   const clearSearch = () => {
     setUserName("");
     setApiErrorResponse(false);

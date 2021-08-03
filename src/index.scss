@@ -2,6 +2,7 @@
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility;
+  -webkit-tap-highlight-color: transparent;
   &::before,
   &::after {
     box-sizing: inherit;

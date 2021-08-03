@@ -44,7 +44,7 @@
         left: 0;
         max-height: 300px;
         z-index: 99;
-        overflow-y: scroll;
+        overflow-y: auto;
         cursor: pointer;
 
         .filter-option {
@@ -96,7 +96,7 @@
         width: 100%;
         left: 0;
         z-index: 99;
-        overflow-y: scroll;
+        overflow-y: auto;
 
         li {
           padding: 6px 0;
