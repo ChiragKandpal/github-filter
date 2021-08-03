@@ -17,6 +17,10 @@
 
       &:first-child {
         width: 100%;
+
+        .filter-list-container {
+          z-index: 999;
+        }
       }
 
       .active-filter {
