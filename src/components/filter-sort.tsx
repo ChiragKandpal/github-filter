@@ -14,7 +14,7 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
   const [openIssueCountList, setOpenIssueCountList] = useState<Array<number>>([]);
   const [watcherCountList, setWatcherCountList] = useState<Array<number>>([]);
   const [toggleDropdown, setToggleDropdown] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<string>("");
+  const [selectedValue, setSelectedValue] = useState<string | null>(null);
   const [activeRepo, setActiveRepo] = useState<string | null>(null);
   const [activeStargazerCount, setActiveStargazerCount] = useState<string | null>(null);
   const [activeOpenIssueCount, setActiveOpenIssueCount] = useState<string | null>(null);
@@ -37,6 +37,7 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
   // set filter object to null on username search.
   useEffect(() => {
     setActiveRepo(null);
+    setSelectedValue(null);
     setActiveStargazerCount(null);
     setActiveOpenIssueCount(null);
     setActiveWatcherCount(null);
@@ -111,7 +112,7 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
         openCount: null,
         watcher: null,
       });
-      setSelectedValue("");
+      setSelectedValue(null);
       setActiveRepo(null);
       setActiveStargazerCount(null);
       setActiveOpenIssueCount(null);
