@@ -135,9 +135,7 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
   // on filter option select add selecteed option to filterParam object.
   const filterSelectHandler = (event: any) => {
     const filterType = event.dataset.filterType;
-    if (filterType === "repo-name") {
-      console.log("asd", event.dataset.filterName);
-      
+    if (filterType === "repo-name") {      
       setFilterParam({ ...filterParam, repoName: event.dataset.filterName ? event.dataset.filterName : null });
       setActiveRepo(event.dataset.filterName ? event.dataset.filterName : null);
     }

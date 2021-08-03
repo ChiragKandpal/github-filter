@@ -19,6 +19,7 @@ const App: React.FC = () => {
           if (response.ok) {
             return response.json();
           } else {
+            setResponseData([]);
             throw new Error("User not found");
           }
         })
@@ -28,6 +29,7 @@ const App: React.FC = () => {
             setApiErrorResponse(false);
           } else {
             setApiErrorResponse(true);
+            setResponseData([]);
             throw new Error("User not found");
           }
         })
@@ -80,7 +82,7 @@ const App: React.FC = () => {
         )}
         {apiErrorResponse && <div className="start-page-text">{webpageConstants.errorText}</div>}
       </div>
-      {userName && responseData.length > 0 && (
+      {!apiErrorResponse && userName && responseData.length > 0 && (
         <FilterSort repoResponseProp={responseData} />
       )}
     </>
