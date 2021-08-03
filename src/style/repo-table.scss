@@ -52,11 +52,37 @@
 @include s768 {
   .repo-table {
     &__container {
-      .repo-card {  
+      height: 100vh;
+      position: relative;
+      overflow-y: scroll;
+    }
+  }
+}
+
+@include s1080 {
+  .repo-table {
+    &__container {
+      height: 100vh;
+      position: absolute;
+      right: 2%;
+      top: 50px;
+      padding: 12px 12px 100px;
+      overflow-y: scroll;
+
+      .repo-card {
         .text-data-wrapper {
           margin: 0 0 0 20px;
         }
       }
+    }
+  }
+}
+
+@include s1200 {
+  .repo-table {
+    &__container {
+      right: 4%;
+      padding: 40px 40px 100px;
     }
   }
 }

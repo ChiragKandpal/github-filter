@@ -1,3 +1,5 @@
+@import '../mixins.scss';
+
 .filter-sort {
   &__container {
     padding: 12px;
@@ -110,4 +112,20 @@
   margin: 20px auto 0;
   padding: 0 12px;
   max-width: 700px;
+}
+
+@include s1080 {
+  .filter-sort {
+    &__container {
+      margin: 0 0 0 2%;
+    }
+  }
+}
+
+@include s1200 {
+  .filter-sort {
+    &__container {
+      padding: 12px 40px;
+    }
+  }
 }
