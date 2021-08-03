@@ -357,13 +357,10 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
         </button>
 
         {arrNew.length > 0 && (
-          <div
-            className="filter-sort__sort-wrapper"
-            ref={ref}
-            onClick={sortdropDownHandler}
-          >
+          <div className="filter-sort__sort-wrapper">
             Sort By
-            <div className="sort-body">
+            <div className="sort-body" ref={ref}
+            onClick={sortdropDownHandler}>
               <div className="current-sort js-selected-sort">
                 {selectedValue ? selectedValue : `None`}
               </div>

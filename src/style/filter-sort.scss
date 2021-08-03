@@ -71,12 +71,12 @@
     display: flex;
     align-items: center;
     margin: 10px 0;
-    cursor: pointer;
 
     .sort-body {
       text-transform: capitalize;
       margin: 0 0 0 6px;
       position: relative;
+      cursor: pointer;
 
       .current-sort {
         background: #dbdbdb;
