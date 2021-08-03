@@ -28,7 +28,7 @@ const RepoTable: React.FC<Props> = ({ tableArrayProps }: Props) => {
               <span>Stargazers:</span> {data.stargazers_count}
             </p>
             <p>
-              <span>description:</span> {data.description ? `${data.description.slice(0, 100)}}...` : 'none'}
+              <span>description:</span> {data.description ? `${data.description.slice(0, 100)}...` : 'none'}
             </p>
           </div>
         </div>
