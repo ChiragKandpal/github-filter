@@ -44,7 +44,7 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
   }, [repoResponseProp]);
 
   useEffect(() => {
-    setArrNew(repoResponseCurrent);
+    setArrNew([...repoResponseCurrent]);
   }, [repoResponseProp, repoResponseCurrent]);
 
   // push sorted and non repeatitive values i.e reponame and counts in respective arrays. 
