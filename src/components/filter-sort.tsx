@@ -187,8 +187,8 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
     });
 
     setArrNew([...repoResponseCurrent]);
-    setToggleDropdown(false);
     setSelectedValue(element.textContent);
+    setToggleDropdown(false);
   };
 
   // handle sort list dropdown on sort button click.

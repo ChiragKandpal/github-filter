@@ -6,6 +6,7 @@
     flex-direction: column;
     padding: 12px;
     max-width: 700px;
+    width: 100%;
     margin: auto;
 
     .repo-card {
@@ -32,7 +33,7 @@
         overflow-wrap: anywhere;
 
         h4 {
-          font-size: 30px;
+          font-size: 20px;
           font-weight: normal;
         }
 
@@ -55,6 +56,14 @@
       height: 100vh;
       position: relative;
       overflow-y: auto;
+
+      .repo-card {
+        .text-data-wrapper {
+          h4 {
+            font-size: 30px;
+          }
+        }
+      }
     }
   }
 }

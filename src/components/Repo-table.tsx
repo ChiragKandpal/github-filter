@@ -19,7 +19,7 @@ const RepoTable: React.FC<Props> = ({ tableArrayProps }: Props) => {
             <h4>{data.name}</h4>
             <p><span>owner:</span> {data.owner.login}</p>
             <p>
-              <span>Openissues:</span> {data.open_issues_count}
+              <span>Open issues:</span> {data.open_issues_count}
             </p>
             <p>
               <span>watcher:</span> {data.watchers_count}
