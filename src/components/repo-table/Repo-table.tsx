@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./repo-table.scss";
 
 interface Props {

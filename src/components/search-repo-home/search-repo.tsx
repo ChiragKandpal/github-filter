@@ -4,7 +4,7 @@ import { webpageConstants } from "../../constants/app-constants";
 import FilterSort from "../filter-sort/filter-sort";
 import "./search-repo.scss";
 
-const App: React.FC = () => {
+const SearchRepo: React.FC = () => {
   const [userName, setUserName] = useState("");
   const [responseData, setResponseData] = useState<Array<any>>([]);
   const [apiErrorResponse, setApiErrorResponse] = useState<boolean>(false);
@@ -89,4 +89,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default SearchRepo;
