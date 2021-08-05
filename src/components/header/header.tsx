@@ -1,6 +1,6 @@
 import React from "react";
-import { webpageConstants } from "../app-constants";
-import "../style/header.scss";
+import { webpageConstants } from "../../constants/app-constants";
+import "./header.scss";
 
 const Header = () => {
   return <h1 className="title">{webpageConstants.webisteTitle}</h1>;

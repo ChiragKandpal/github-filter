@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import RepoTable from "./Repo-table";
-import { webpageConstants } from "../app-constants";
-import "../style/filter-sort.scss";
+import RepoTable from "../repo-table/Repo-table";
+import { webpageConstants } from "../../constants/app-constants";
+import "./filter-sort.scss";
 
 interface sortProps {
   repoResponseProp: Array<any>;

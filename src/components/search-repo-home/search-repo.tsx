@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { webpageConstants } from "./app-constants";
-import FilterSort from "./components/filter-sort";
-import "./style/App.scss";
+import { webpageConstants } from "../../constants/app-constants";
+import FilterSort from "../filter-sort/filter-sort";
+import "./search-repo.scss";
 
 const App: React.FC = () => {
   const [userName, setUserName] = useState("");

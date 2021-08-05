@@ -1,4 +1,5 @@
-import "../style/repo-table.scss";
+import { useState } from "react";
+import "./repo-table.scss";
 
 interface Props {
   tableArrayProps: Array<any>;

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './components/search-repo-home/search-repo';
 import reportWebVitals from './reportWebVitals';
-import Header from './components/header';
-import './index.scss';
+import Header from './components/header/header';
+import './style/index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
