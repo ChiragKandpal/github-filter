@@ -1,3 +1,4 @@
+import {webpageConstants} from '../../constants/app-constants';
 import "./repo-table.scss";
 
 interface Props {
@@ -17,18 +18,18 @@ const RepoTable: React.FC<Props> = ({ tableArrayProps }: Props) => {
           />
           <div className="text-data-wrapper">
             <h4>{data.name}</h4>
-            <p><span>owner:</span> {data.owner.login}</p>
+            <p><span>{webpageConstants.tableIssueTitle}</span> {data.owner.login ? data.owner.login : 'none'}</p>
             <p>
-              <span>Open issues:</span> {data.open_issues_count}
+              <span>{webpageConstants.tableOpenTitle}</span> {data.open_issues_count ? data.open_issues_count : 'none'}
             </p>
             <p>
-              <span>watcher:</span> {data.watchers_count}
+              <span>{webpageConstants.tableWatcherTitle}</span> {data.watchers_count ? data.watchers_count : 'none'}
             </p>
             <p>
-              <span>Stargazers:</span> {data.stargazers_count}
+              <span>{webpageConstants.tableStargazerTitle}</span> {data.stargazers_count ? data.stargazers_count : 'none'}
             </p>
             <p>
-              <span>description:</span> {data.description ? `${data.description.slice(0, 100)}...` : 'none'}
+              <span>{webpageConstants.tableDescTitle}</span> {data.description ? `${data.description.slice(0, 100)}${data.description.length >= 100 && `...`}` : 'none'}
             </p>
           </div>
         </div>

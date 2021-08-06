@@ -1,10 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import RepoTable from "../repo-table/Repo-table";
+import {filterDropdownHandle} from './filter-helper';
 import { webpageConstants } from "../../constants/app-constants";
 import "./filter-sort.scss";
 
 interface sortProps {
   repoResponseProp: Array<any>;
+}
+
+interface filterParamIntface {
+  repoName: null | string;
+  starCount: null | number;
+  openCount: null | number;
+  watcher: null | number;
 }
 
 const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
@@ -19,19 +27,13 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
   const [activeStargazerCount, setActiveStargazerCount] = useState<string | null>(null);
   const [activeOpenIssueCount, setActiveOpenIssueCount] = useState<string | null>(null);
   const [activeWatcherCount, setActiveWatcherCount] = useState<string | null>(null);
-  const [filterParam, setFilterParam] = useState<{
-    repoName: null | string;
-    starCount: null | number;
-    openCount: null | number;
-    watcher: null | number;
-  }>({
+  const [filterParam, setFilterParam] = useState<filterParamIntface>({
     repoName: null,
     starCount: null,
     openCount: null,
     watcher: null,
   });
   const ref = useRef<HTMLDivElement>(null);
-  const sortOptionRef = useRef<HTMLDivElement>(null);
   let repoResponseCurrent = repoResponseProp;
 
   // set filter object to null on username search.
@@ -119,17 +121,6 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
       setActiveWatcherCount(null);
       setArrNew([...repoResponseProp]);
     }
-  };
-
-  // generic filter dropdown handler on filter click.
-  const filterDropdownHandle = (currTarget: any) => {
-    const filterWrapper = currTarget.closest(
-      `[data-filter-wrapper="filter-wrapper"]`
-    );
-    const filterListContainer = filterWrapper.querySelector(
-      `[data-filter-list="filter-list"]`
-    );
-    filterListContainer.classList.toggle("hide");
   };
 
   // on filter option select add selecteed option to filterParam object.
@@ -348,15 +339,15 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
           </div>
         </div>
         <button className="btn-blue btn-all" onClick={() => repoFilterHandler(true)}>
-          apply filters
+        {webpageConstants.applyFilter}
         </button>
         <button className="btn-clear btn-all" onClick={() => repoFilterHandler(false)}>
-          clear filters & sort
+        {webpageConstants.clearFilterSort}
         </button>
 
         {arrNew.length > 0 && (
           <div className="filter-sort__sort-wrapper">
-            Sort By
+            {webpageConstants.sortBy}
             <div className="sort-body" ref={ref}
             onClick={sortdropDownHandler}>
               <div className="current-sort js-selected-sort">
@@ -365,59 +356,15 @@ const FilterSort: React.FC<sortProps> = ({ repoResponseProp }: sortProps) => {
               {toggleDropdown && (
                 <ul className="sort-list">
                   <li>
-                    <div
-                      ref={sortOptionRef}
-                      data-sort-direction="asc"
-                      data-sort-name="star"
-                      onClick={(e) => sortResultHandler(e)}
-                    >
-                      star count (asc)
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      data-sort-direction="desc"
-                      data-sort-name="star"
-                      onClick={(e) => sortResultHandler(e)}
-                    >
-                      star count (dec)
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      data-sort-direction="asc"
-                      data-sort-name="open"
-                      onClick={(e) => sortResultHandler(e)}
-                    >
-                      open issue count (asc)
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      data-sort-direction="desc"
-                      data-sort-name="open"
-                      onClick={(e) => sortResultHandler(e)}
-                    >
-                      open issue count (dec)
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      data-sort-direction="asc"
-                      data-sort-name="watcher"
-                      onClick={(e) => sortResultHandler(e)}
-                    >
-                      watcher count (asc)
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      data-sort-direction="desc"
-                      data-sort-name="watcher"
-                      onClick={(e) => sortResultHandler(e)}
-                    >
-                      watcher count (dec)
-                    </div>
+                      {webpageConstants.sortData.map(({starCountText, sortDirection, sortName}, idx) => (
+                        <div key={idx}
+                          data-sort-direction={sortDirection}
+                          data-sort-name={sortName}
+                          onClick={(e) => sortResultHandler(e)}
+                        >
+                          {starCountText}
+                        </div>
+                      ))}
                   </li>
                 </ul>
               )}

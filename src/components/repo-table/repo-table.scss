@@ -71,10 +71,10 @@
 @include s1080 {
   .repo-table {
     &__container {
-      height: 100vh;
+      height: 95vh;
       position: absolute;
       right: 2%;
-      top: 50px;
+      top: 40px;
       padding: 12px 12px 100px;
       overflow-y: auto;
 
